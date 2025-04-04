@@ -112,46 +112,27 @@ DeviceLogonEvents
 how to create a alert rule in Microsoft Sentinel , go to Microsoft Sentinel, click on your group, click on configuration, click on Analytics, click create with the + beside it , click scheduled query rule
 After clicking **"Scheduled query rule"**, you’ll see the **Analytics rule details** tab. Fill in the following fields:
 
-1. **Name**:  
-   - Enter a name for your rule, e.g., **Brute Force Attack Detection Rule**.
+1. **Name:** *Brute Force Attack Detection Rule*.
 
-2. **Description**:  
-   - Add a brief description of what the rule does, e.g.,  
-     *"This rule detects potential brute-force login attempts based on failed sign-ins exceeding a defined threshold."*
+2. **Description:**  *This rule detects potential brute-force login attempts based on failed sign-ins exceeding a defined threshold.*
 
-3. **Severity**:  
-   - Choose a severity level:
-     - **Low** 
-     - **Medium**
-     - **High** (Recommended for brute force detection)
+3. **Severity:** *High* (Recommended for brute force detection)
 
-4. **Tactics**:  
-   - Select the **MITRE ATT&CK Tactics** related to brute force:
+4. **MITRE ATT&CK:** *Select tactics techniques and sub techniques*
      - **Initial Access**
      - **Credential Access**
       
 ![Screenshot 2025-04-03 204951](https://github.com/user-attachments/assets/7889bd82-e283-4754-8514-e404a1f42197)
 
-5. **Rule type**:  
-   - Select **Scheduled**.
+5. **Rule type:**  *Scheduled*
 
-6. **Set rule frequency**:  
-   - Choose how often the query should run (e.g., **Every 5 minutes**).
+6. **Set rule frequency:** *Every 5 minutes*
 
-7. **Set query results to look back**:  
-   - Define the time window for the query (e.g., **Last 1 hour**).
+7. **Set query results to look back:** *Last 1 hour*
 
 ### **Step 2: Add the KQL Query**  
 In the **Set rule query** step, paste your KQL query to detect brute-force attempts:  
-
-```kql
-DeviceLogonEvents
-| where TimeGenerated >= ago(5h)
-| where ActionType == "LogonFailed"
-| summarize NumberOfFailures = count() by RemoteIP, ActionType, DeviceName
-| where NumberOfFailures >= 10s
-```
-![Screenshot 2025-01-14 111832](https://github.com/user-attachments/assets/b1164c0f-6022-444e-a409-43c1d4e9a579)
+![image](https://github.com/user-attachments/assets/387cea80-fe7e-47b6-b28d-fe0e057d696f)
 
 - This query filters **sign-in logs** for failed login attempts and identifies unusual patterns.  
 - Adjust thresholds based on your environment (e.g., `> 5 failed attempts`).
@@ -161,8 +142,6 @@ DeviceLogonEvents
 2. **Group alerts into incidents**:  
    - Choose **"Grouped into a single incident if they share the same entities"** to avoid duplicates.
 
----
-
 ### **Step 4: Add Actions and Automation**  
 1. Configure **actions** to trigger when the rule is activated:  
    - Add a **Playbook** for automated responses, such as:  
@@ -170,7 +149,7 @@ DeviceLogonEvents
      - Sending an email to your security team.  
      - Triggering a Teams or Slack notification.  
 
-2. Example Playbook: A Logic App that sends an **email notification 📤** to the SOC.
+2. Example Playbook: A Logic App that sends an **email notification** to the SOC.
 
 ### **Step 5: Review and Enable**  
 1. **Review everything** to ensure it’s correct:
