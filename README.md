@@ -50,14 +50,13 @@ DeviceLogonEvents
   | `156.238.242.94`     | 40                | `win`    |
   | `123.201.153.51`    | 40               | `britt-windows10`     |
 
-![image](https://github.com/user-attachments/assets/f65fe831-3d85-41ed-9755-7e3a8bb713e2)
-
 - KQL Query to detect failed logins:  
   ```kql
   DeviceLogonEvents
   | where RemoteIP in ("123.201.153.51", "156.238.242.94", "45.92.177.109", "5.182.5.119")
   | where ActionType != "LogonFailed"
   ```
+![image](https://github.com/user-attachments/assets/f65fe831-3d85-41ed-9755-7e3a8bb713e2)
 
   **Result:** No successful logins from these IPs were detected.
 
