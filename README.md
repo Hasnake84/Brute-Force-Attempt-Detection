@@ -131,6 +131,7 @@ After clicking **"Scheduled query rule"**, you’ll see the **Analytics rule det
 
 ### **Step 2: Add the KQL Query**  
 In the **Set rule query** step, paste your KQL query to detect brute-force attempts:  
+
 ![image](https://github.com/user-attachments/assets/387cea80-fe7e-47b6-b28d-fe0e057d696f)
 
 - This query filters **sign-in logs** for failed login attempts and identifies unusual patterns.  
