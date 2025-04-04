@@ -50,12 +50,12 @@ DeviceLogonEvents
   | `156.238.242.94`     | 40                | `win`    |
   | `123.201.153.51`    | 40               | `britt-windows10`     |
 
-![Screenshot 2025-01-06 181511](https://github.com/user-attachments/assets/3134d542-b44d-4036-b2ce-1827bc7dda88)
+![image](https://github.com/user-attachments/assets/f65fe831-3d85-41ed-9755-7e3a8bb713e2)
 
 - KQL Query to detect failed logins:  
   ```kql
   DeviceLogonEvents
-  | where RemoteIP in ("87.120.127.241", "194.0.234.44", "10.0.0.8" )
+  | where RemoteIP in ("123.201.153.51", "156.238.242.94", "45.92.177.109", "5.182.5.119")
   | where ActionType != "LogonFailed"
   ```
 
@@ -130,7 +130,7 @@ After clicking **"Scheduled query rule"**, you’ll see the **Analytics rule det
      - **Initial Access**
      - **Credential Access**
       
-![Screenshot 2025-01-14 103734](https://github.com/user-attachments/assets/f6558c4d-585b-4e63-b787-1cc071cc0ad0)
+![Screenshot 2025-04-03 204951](https://github.com/user-attachments/assets/7889bd82-e283-4754-8514-e404a1f42197)
 
 5. **Rule type**:  
    - Select **Scheduled**.
